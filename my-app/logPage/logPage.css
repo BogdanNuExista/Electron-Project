@@ -1,0 +1,48 @@
+.login-container {
+    width: 300px;
+    padding: 16px;
+    background-color: #1C1C1C;
+    margin: 0 auto;
+    margin-top: 100px;
+    border-radius: 8px;
+}
+
+.login-container h1 {
+    text-align: center;
+    color: #0F0;
+}
+
+.login-container input {
+    width: 92%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#create-account-btn, #login-btn, #go-back-btn
+{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #0F0;
+    color: #1C1C1C;
+}
+
+#create-account-btn:hover, #login-btn:hover, #go-back-btn:hover
+{
+    background-color: #1C1C1C;
+    color: #0F0;
+}

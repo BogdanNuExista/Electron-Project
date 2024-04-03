@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #0F0; /* Bright green text for a cyberpunk feel */
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif; /* A more stylish font for a cyberpunk feel */
+    text-align: center;
+    text-shadow: 2px 2px 4px #000; /* Black text shadow to make the text stand out more */
+    margin-top: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 0; /* This centers the heading horizontally */
+    z-index: 1; /* Add a z-index to bring the h1 to the front */
+    position: relative; /* z-index only works on positioned elements */
+}
+
+.game {
+    position: relative;
+    width: 400px;
+    margin: 20px auto;
+    transition: transform .2s;
+}
+
+.game img {
+    width: 100%;
+    transition: transform .2s;
+}
+
+.game:hover img {
+    transform: translateX(-10%); /* Move the image slightly to the left when hovered over */
+}
+
+.game .overlay {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 255, 0, 0.5);
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    transition: width .5s ease;
+}
+
+.game:hover .overlay {
+    width: 40%; /* Make the overlay take up 40% of the width of the .game when hovered over */
+}
+
+.game .button, .game .details {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 255, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color .2s;
+    width: 100%; /* Make the buttons take up the full width of the .overlay */
+    text-align: center; /* Center the text within the buttons */
+}
+
+.game .button:hover, .game .details:hover {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+.game .overlay {
+    flex-direction: column; /* Stack the buttons vertically */
+    /* ...other styles... */
+}
