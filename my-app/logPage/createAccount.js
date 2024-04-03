@@ -30,6 +30,8 @@ document.getElementById('create-account-btn').addEventListener('click', () => {
         return;
     }
 
+    /// check if email already exists
+
     var id = Math.floor(Math.random() * 1000);
 
     ipcRenderer.send('create-account', { id, username, password, email });

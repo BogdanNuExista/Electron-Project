@@ -28,6 +28,19 @@ app.on('ready', () => {
     // Create accounts table if not exists
     db.run('CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY, name TEXT, password TEXT, email TEXT)');
 
+    // Create admin account if not exists
+    db.get('SELECT * FROM accounts WHERE name = ?', ['admin'], (err, row) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        if (!row) {
+            db.run('INSERT INTO accounts(id, name, password, email) VALUES(?, ?, ?, ?)', [1, 'admin', 'admin', 'admin@gmail.com']); 
+        } else {
+            mainWindow.webContents.send('admin-account-exists');
+        }
+    }),
+
+
     mainWindow.on('closed', () => {
         mainWindow = null;
         // Close SQLite database connection when the window is closed
