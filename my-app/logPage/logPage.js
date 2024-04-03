@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 // Define path to SQLite database file
-const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'my-app', 'dataBase', 'data.db');
+const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
 
 // Open SQLite database connection
 let db = new sqlite3.Database(dbPath);

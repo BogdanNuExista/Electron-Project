@@ -20,7 +20,7 @@ app.on('ready', () => {
     //mainWindow.loadFile('viewData/viewData.html');
 
     // Define path to SQLite database file
-    const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'my-app', 'dataBase', 'data.db');
+    const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
 
     // Open SQLite database connection
     db = new sqlite3.Database(dbPath);
