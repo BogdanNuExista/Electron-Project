@@ -46,3 +46,21 @@
     background-color: #1C1C1C;
     color: #0F0;
 }
+
+/* Alert Box Styles */
+#alert-box {
+    position: fixed;
+    inset: 40% 50%; /* Using CSS logical properties for better responsiveness */
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center; /* Added for better horizontal alignment of content */
+}
+
+#alert-box #alert-ok {
+    margin-top: 20px;
+}

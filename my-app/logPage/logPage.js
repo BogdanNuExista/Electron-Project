@@ -4,6 +4,15 @@ const path = require('path');
 // Define path to SQLite database file
 const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
 
+function showAlert(message, callback) {
+    document.getElementById('alert-message').textContent = message;
+    document.getElementById('alert-box').style.display = 'block';
+    document.getElementById('alert-ok').onclick = function() {
+        document.getElementById('alert-box').style.display = 'none';
+        callback();
+    };
+}
+
 // Open SQLite database connection
 let db = new sqlite3.Database(dbPath);
 
@@ -23,15 +32,23 @@ document.getElementById('login-btn').addEventListener('click', () => {
             return console.error(err.message);
         }
         if (row) {
-            alert('Logged in successfully!');
-            window.location.href = '../mainPage/index.html';
+            /// check if the user is admin or not by veryfing if id is 1 or not
+            if (row.id === 1) {
+                alert('Logged in successfully as admin!');
+                window.location.href = '../adminPages/adminPage.html';
+            } else {
+                alert('Logged in successfully as user!');
+                window.location.href = '../mainPage/index.html';
+            }
+
         } else {
-            alert('Invalid username or password!');
-            setTimeout(() => {
+            
+            // Show an alert if the username and password are incorrect
+            showAlert('Username or password is incorrect', () => {
                 document.getElementById('username').value = '';
                 document.getElementById('password').value = '';
-                document.getElementById('username').focus();
-            }, 100);
+            });
+            
         }
     });
 });
