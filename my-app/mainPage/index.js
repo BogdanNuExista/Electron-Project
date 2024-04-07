@@ -17,8 +17,6 @@ app.on('ready', () => {
 
     mainWindow.loadFile('logPage/logPage.html');
 
-    //mainWindow.loadFile('viewData/viewData.html');
-
     // Define path to SQLite database file
     const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
 
