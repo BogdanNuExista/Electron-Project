@@ -12,13 +12,8 @@ function showAlert(message, callback) {
         callback();
     };
 }
-
 // Open SQLite database connection
 let db = new sqlite3.Database(dbPath);
-
-// Create a table if it doesn't exist
-db.run('CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY, name TEXT, password TEXT, email TEXT)');
-
 
 document.addEventListener('DOMContentLoaded', (event) => {
 

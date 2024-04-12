@@ -31,6 +31,48 @@ window.addEventListener('DOMContentLoaded', (event) => {
             usersTable.appendChild(tr);
         });
     });
+
+    db.all('SELECT * FROM games', [], (err, rows) => {
+        if (err) {
+            return console.error(err.message);
+        }
+
+        let gamesTable = document.getElementById('games-table');
+
+        rows.forEach((row) => {
+            let tr = document.createElement('tr');
+
+            tr.innerHTML = `
+                <td>${row.id}</td>
+                <td>${row.name}</td>
+                <td>${row.description}</td>
+            `;
+
+            gamesTable.appendChild(tr);
+        });
+    });
+
+    db.all('SELECT * FROM leaderboard', [], (err, rows) => {
+        if (err) {
+            return console.error(err.message);
+        }
+
+        let leaderboardTable = document.getElementById('leaderboard-table');
+
+        rows.forEach((row) => {
+            let tr = document.createElement('tr');
+
+            tr.innerHTML = `
+                <td>${row.id}</td>
+                <td>${row.name}</td>
+                <td>${row.score}</td>
+                <td>${row.game_id}</td>
+            `;
+
+            leaderboardTable.appendChild(tr);
+        });
+    });
+
 });
 
 // Function to delete a user
@@ -44,3 +86,4 @@ function deleteUser(id) {
         location.reload();
     });
 }
+
