@@ -30,9 +30,11 @@ document.getElementById('login-btn').addEventListener('click', () => {
             /// check if the user is admin or not by veryfing if id is 1 or not
             if (row.id === 1) {
                 alert('Logged in successfully as admin!');
+                localStorage.setItem('current user id', row.id);
                 window.location.href = '../adminPages/adminPage.html';
             } else {
                 alert('Logged in successfully as user!');
+                localStorage.setItem('current user id', row.id);
                 window.location.href = '../mainPage/index.html';
             }
 

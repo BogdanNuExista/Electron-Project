@@ -27,13 +27,17 @@ app.on('ready', () => {
     // Create tables if not exists
     db.run('CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY, name TEXT, password TEXT, email TEXT)');
     db.run('CREATE TABLE IF NOT EXISTS games (id INTEGER PRIMARY KEY, name TEXT, description TEXT)');
+
+    //db.run(`DROP TABLE IF EXISTS leaderboard`); 
     db.run(`
     CREATE TABLE IF NOT EXISTS leaderboard (
         id INTEGER PRIMARY KEY, 
         name TEXT, 
         score INTEGER,
         game_id INTEGER,
+        user_id INTEGER,
         FOREIGN KEY(game_id) REFERENCES games(id)
+        FOREIGN KEY(user_id) REFERENCES accounts(id)
     )
 `);
 
@@ -114,74 +118,3 @@ ipcMain.on('login', (event, loginData) => {
     );
 });
 
-function createDatabase() {
-    // Connect to the SQLite database (or create if not exists)
-    db = new sqlite3.Database('dataBase/data.db', (err) => {
-        if (err) {
-            console.error('Error opening database: ', err.message);
-        } else {
-            console.log('Connected to the SQLite database.');
-        }
-    });
-
-    // Create accounts table if not exists
-    db.run(`CREATE TABLE IF NOT EXISTS accounts (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        password TEXT,
-        email TEXT
-    )`, (err) => {
-        if (err) {
-            console.error('Error creating accounts table: ', err.message);
-        } else {
-            console.log('Created accounts table.');
-        }
-    });
-
-    // Create admin account if not exists
-    db.get('SELECT * FROM accounts WHERE Id = ?', [1], (err, row) => {
-        if (err) {
-            return console.error(err.message);
-        }
-        if (!row) {
-            db.run('INSERT INTO accounts(id, name, password, email) VALUES(?, ?, ?, ?)', [1, 'admin', 'admin', 'admin@gmail.com']);
-        } else {
-            console.log('Admin account already exists.');
-        }
-    });
-
-
-    /// Create games table if not exists
-    db.run(`CREATE TABLE IF NOT EXISTS games (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        description TEXT
-    )`, (err) => {
-        if (err) {
-            console.error('Error creating games table: ', err.message);
-        } else {
-            console.log('Created games table.');
-        }
-    });
-
-    db.run(`CREATE TABLE IF NOT EXISTS leaderboard (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        score INTEGER
-    )`, (err) => {
-        if (err) {
-            console.error('Error creating leaderboard table: ', err.message);
-        } else {
-            console.log('Created leaderboard table.');
-        }
-    });
-
-    // Close the database connection
-    db.close((err) => {
-        if (err) {
-            console.error('Error closing database: ', err.message);
-        } else {
-            console.log('Closed the database connection.');
-        }
-    });
-}

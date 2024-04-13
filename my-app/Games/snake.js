@@ -1,6 +1,12 @@
 const canvas = document.getElementById('game-board');
 const context = canvas.getContext('2d');
 
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
+let db = new sqlite3.Database(dbPath);
+
+
 let score = 0;
 let snake = [{x: 200, y: 200}];
 let direction = {x: 0, y: 0};
@@ -63,6 +69,8 @@ function loop() {
         context.fillStyle = 'red';
         context.font = '50px Arial';
         context.fillText('GAME OVER', canvas.width / 2 - 100, canvas.height / 2);
+
+        addScoreIfInTop10();
         setTimeout(restartGame, 2000); // restart the game after 2 seconds
     } else {
         setTimeout(loop, 200);
@@ -102,4 +110,21 @@ window.addEventListener('keydown', e => {
 document.getElementById('back-button').addEventListener('click', () => {
     window.location.href = '../mainPage/index.html';
 });
+
+function insertIntoLeaderboard(name, score, game_id) {
+    let user_id = localStorage.getItem('current user id');
+    db.run('INSERT INTO leaderboard(name, score, game_id, user_id) VALUES(?, ?, ?, ?)', [name, score, game_id, user_id]);
+}
+
+function addScoreIfInTop10()
+{
+    db.all('SELECT * FROM leaderboard WHERE game_id = ? ORDER BY score DESC LIMIT 10', [1], (err, rows) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        if (rows.length < 10 || rows[rows.length - 1].score < score) {
+            insertIntoLeaderboard('Snake', score, 1);
+        }
+    });
+}
 
