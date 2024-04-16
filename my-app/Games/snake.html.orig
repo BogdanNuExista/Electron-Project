@@ -8,8 +8,11 @@
     <canvas id="game-board" width="400" height="400"></canvas>
     <div id="score">Score: 0</div>
     <script src="snake.js"></script>
+<<<<<<< HEAD
 
     <button id="back-button">Go Back</button>
 
+=======
+>>>>>>> origin/main
 </body>
 </html>

@@ -3,9 +3,12 @@ const context = canvas.getContext('2d');
 
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+<<<<<<< HEAD
 const dbPath = path.join('C:', 'Users', 'dariu', 'Desktop', 'New folder', 'my-app', 'dataBase', 'data.db');
 //const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
-
+=======
+const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
+>>>>>>> origin/main
 let db = new sqlite3.Database(dbPath);
 
 
@@ -109,6 +112,13 @@ window.addEventListener('keydown', e => {
     }
 });
 
+<<<<<<< HEAD
+=======
+document.getElementById('back-button').addEventListener('click', () => {
+    window.location.href = '../mainPage/index.html';
+});
+
+>>>>>>> origin/main
 function insertIntoLeaderboard(name, score, game_id) {
     let user_id = localStorage.getItem('current user id');
     db.run('INSERT INTO leaderboard(name, score, game_id, user_id) VALUES(?, ?, ?, ?)', [name, score, game_id, user_id]);
@@ -126,6 +136,7 @@ function addScoreIfInTop10()
     });
 }
 
+<<<<<<< HEAD
 window.addEventListener('DOMContentLoaded', (event) => {
 
     document.getElementById('back-button').addEventListener('click', () => {
@@ -133,3 +144,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     );
 });
+=======
+>>>>>>> origin/main

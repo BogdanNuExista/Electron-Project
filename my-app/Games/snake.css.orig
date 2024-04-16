@@ -12,6 +12,7 @@ body {
 
 #back-button {
     position: absolute;
+<<<<<<< HEAD
     top: 10px;
     left: 10px;
     color: #fff;
@@ -25,6 +26,10 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
+=======
+    bottom: 10px;
+    left: 10px;
+>>>>>>> origin/main
 }
 
 #score {
@@ -33,6 +38,7 @@ body {
     right: 10px;
     color: #fff;
 }
+<<<<<<< HEAD
 
 table {
     width: 100%;
@@ -63,3 +69,5 @@ tr:nth-child(even) {
     padding: 10px;
     text-align: left;
 }
+=======
+>>>>>>> origin/main

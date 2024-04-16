@@ -26,7 +26,11 @@ tr:nth-child(even) {
 }
 
 #users-table th, #games-table th, #leaderboard-table th {
+<<<<<<< HEAD
     background-color: #4CAF50;             
+=======
+    background-color: #4CAF50;
+>>>>>>> origin/main
     color: white;
     padding: 10px;
     text-align: left;
