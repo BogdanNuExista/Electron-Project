@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^29.3.0"
+    "electron": "^29.1.6"
   },
   "dependencies": {
     "sqlite3": "^5.1.7"

@@ -2,8 +2,28 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="adminPage.css">
+    <link rel="stylesheet" type="text/css" href="../mainPage/background.css">
 </head>
 <body>
+
+    <div class="wrapper">
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+    </div>
+
     <h1>Admin Page</h1>
     <table id="users-table">
         <tr>
@@ -14,6 +34,26 @@
         </tr>
         <!-- User rows will be added here dynamically -->
     </table>
+
+    <table id="games-table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <!-- Game rows will be added here dynamically -->
+    </table>
+
+    <table id="leaderboard-table">
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>User_Id</th>
+        </tr>
+        <!-- Leaderboard rows will be added here dynamically -->
+    </table>
+
+
     <script src="adminPage.js"></script>
 </body>
 </html>

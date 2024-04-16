@@ -5,6 +5,9 @@
     margin: 0 auto;
     margin-top: 100px;
     border-radius: 8px;
+
+    z-index: 1;
+    position: relative;
 }
 
 .login-container h1 {

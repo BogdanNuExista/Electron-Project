@@ -4,6 +4,7 @@ const path = require('path');
 // Define path to SQLite database file
 const dbPath = path.join('C:', 'Users', 'dariu', 'Desktop', 'New folder', 'my-app', 'dataBase', 'data.db');
 //const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
+
 function showAlert(message, callback) {
     document.getElementById('alert-message').textContent = message;
     document.getElementById('alert-box').style.display = 'block';
@@ -12,13 +13,8 @@ function showAlert(message, callback) {
         callback();
     };
 }
-
 // Open SQLite database connection
 let db = new sqlite3.Database(dbPath);
-
-// Create a table if it doesn't exist
-db.run('CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY, name TEXT, password TEXT, email TEXT)');
-
 
 document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -35,9 +31,11 @@ document.getElementById('login-btn').addEventListener('click', () => {
             /// check if the user is admin or not by veryfing if id is 1 or not
             if (row.id === 1) {
                 alert('Logged in successfully as admin!');
+                localStorage.setItem('current user id', row.id);
                 window.location.href = '../adminPages/adminPage.html';
             } else {
                 alert('Logged in successfully as user!');
+                localStorage.setItem('current user id', row.id);
                 window.location.href = '../mainPage/index.html';
             }
 

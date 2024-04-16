@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const { Database } = require('sqlite3');
 const sqlite3 = require('sqlite3').verbose();
 
 let mainWindow;
@@ -17,16 +18,29 @@ app.on('ready', () => {
 
     mainWindow.loadFile('logPage/logPage.html');
 
-    //mainWindow.loadFile('viewData/viewData.html');
-    //const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
     // Define path to SQLite database file
     const dbPath = path.join('C:', 'Users', 'dariu', 'Desktop', 'New folder', 'my-app', 'dataBase', 'data.db');
+    //const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
 
     // Open SQLite database connection
     db = new sqlite3.Database(dbPath);
 
-    // Create accounts table if not exists
+    // Create tables if not exists
     db.run('CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY, name TEXT, password TEXT, email TEXT)');
+    db.run('CREATE TABLE IF NOT EXISTS games (id INTEGER PRIMARY KEY, name TEXT, description TEXT)');
+
+    //db.run(`DROP TABLE IF EXISTS leaderboard`); 
+    db.run(`
+    CREATE TABLE IF NOT EXISTS leaderboard (
+        id INTEGER PRIMARY KEY, 
+        name TEXT, 
+        score INTEGER,
+        game_id INTEGER,
+        user_id INTEGER,
+        FOREIGN KEY(game_id) REFERENCES games(id)
+        FOREIGN KEY(user_id) REFERENCES accounts(id)
+    )
+`);
 
     // Create admin account if not exists
     db.get('SELECT * FROM accounts WHERE name = ?', ['admin'], (err, row) => {
@@ -39,6 +53,17 @@ app.on('ready', () => {
             mainWindow.webContents.send('admin-account-exists');
         }
     }),
+
+    // Populate games table if not exists
+    db.get('SELECT * FROM games WHERE name = ?', ['Snake'] , (err, row) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        if (!row) {
+            db.run('INSERT INTO games(id, name, description) VALUES(?, ?, ?)', [1, 'Snake', 'A classic snake game.']);
+        }
+    }
+    );
 
 
     mainWindow.on('closed', () => {
@@ -74,3 +99,23 @@ ipcMain.on('print-all-data', (event) => {                          /// for the v
         console.log(rows);
     });
 });
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ipcMain.on('login', (event, loginData) => {
+    const { username, password } = loginData;
+    db.get('SELECT * FROM accounts WHERE name = ? AND password = ?', [username, password], (err, row) => {
+        if (err) {
+            console.error(err.message);
+            return;
+        }
+        if (row) {
+            mainWindow.webContents.send('login-response', { success: true });
+        } else {
+            mainWindow.webContents.send('login-response', { success: false, message: 'Invalid username or password' });
+        }
+    }
+    );
+});
+
