@@ -3,7 +3,9 @@ const context = canvas.getContext('2d');
 
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+//const dbPath = path.join('C:', 'Users', 'dariu', 'Desktop', 'New folder', 'my-app', 'dataBase', 'data.db');
 const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
+
 let db = new sqlite3.Database(dbPath);
 
 
