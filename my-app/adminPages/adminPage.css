@@ -16,6 +16,9 @@ th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    position: relative;
+    z-index: 2;
+    background-color: #f2f2f2;
 }
 
 tr:nth-child(even) {
@@ -23,7 +26,7 @@ tr:nth-child(even) {
 }
 
 #users-table th, #games-table th, #leaderboard-table th {
-    background-color: #4CAF50;
+    background-color: #4CAF50;             
     color: white;
     padding: 10px;
     text-align: left;

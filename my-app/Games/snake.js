@@ -107,10 +107,6 @@ window.addEventListener('keydown', e => {
     }
 });
 
-document.getElementById('back-button').addEventListener('click', () => {
-    window.location.href = '../mainPage/index.html';
-});
-
 function insertIntoLeaderboard(name, score, game_id) {
     let user_id = localStorage.getItem('current user id');
     db.run('INSERT INTO leaderboard(name, score, game_id, user_id) VALUES(?, ?, ?, ?)', [name, score, game_id, user_id]);
@@ -128,3 +124,10 @@ function addScoreIfInTop10()
     });
 }
 
+window.addEventListener('DOMContentLoaded', (event) => {
+
+    document.getElementById('back-button').addEventListener('click', () => {
+        window.location.href = '../mainPage/index.html';
+    }
+    );
+});
