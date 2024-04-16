@@ -18,9 +18,9 @@ app.on('ready', () => {
     mainWindow.loadFile('logPage/logPage.html');
 
     //mainWindow.loadFile('viewData/viewData.html');
-
+    //const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
     // Define path to SQLite database file
-    const dbPath = path.join('E:', 'projects', 'applications', 'Electron-Projects', 'Electron-Project', 'my-app', 'dataBase', 'data.db');
+    const dbPath = path.join('C:', 'Users', 'dariu', 'Desktop', 'New folder', 'my-app', 'dataBase', 'data.db');
 
     // Open SQLite database connection
     db = new sqlite3.Database(dbPath);
