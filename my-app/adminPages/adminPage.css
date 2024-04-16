@@ -10,7 +10,6 @@ table {
     margin: 0 0 200px 0;
     padding: 0;
     box-sizing: border-box;
-    
   }
 
 th, td {
@@ -21,4 +20,11 @@ th, td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+#users-table th, #games-table th, #leaderboard-table th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: left;
 }

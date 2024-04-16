@@ -46,7 +46,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 <td>${row.id}</td>
                 <td>${row.name}</td>
                 <td>${row.description}</td>
-                <td><button onclick="deleteGame(${row.id})">Delete</button></td>
             `;
 
             gamesTable.appendChild(tr);
@@ -67,7 +66,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 <td>${row.name}</td>
                 <td>${row.score}</td>
                 <td>${row.user_id}</td>
-                <td><button onclick="deleteLeaderboard(${row.id})">Delete</button></td>
             `;
 
             leaderboardTable.appendChild(tr);
