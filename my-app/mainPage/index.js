@@ -6,6 +6,8 @@ const sqlite3 = require('sqlite3').verbose();
 let mainWindow;
 let db;
 
+app.disableHardwareAcceleration(); /// fixing gpu state invalid error
+
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 1280,
@@ -55,12 +57,13 @@ app.on('ready', () => {
     }),
 
     // Populate games table if not exists
-    db.get('SELECT * FROM games WHERE name = ?', ['Snake'] , (err, row) => {
+    db.get('SELECT * FROM games WHERE name = ?', ['Tetris'] , (err, row) => {
         if (err) {
             return console.error(err.message);
         }
         if (!row) {
             db.run('INSERT INTO games(id, name, description) VALUES(?, ?, ?)', [1, 'Snake', 'A classic snake game.']);
+            db.run('INSERT INTO games(id, name, description) VALUES(?, ?, ?)', [2, 'Tetris', 'A classic tetris game.']);
         }
     }
     );

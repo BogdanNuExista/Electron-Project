@@ -70,7 +70,7 @@ function loop() {
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = 'red';
         context.font = '50px Arial';
-        context.fillText('GAME OVER', canvas.width / 2 - 100, canvas.height / 2);
+        context.fillText('GAME OVER', canvas.width / 2 - 100, canvas.height / 2, 200, 100);
 
         addScoreIfInTop10();
         setTimeout(restartGame, 2000); // restart the game after 2 seconds
