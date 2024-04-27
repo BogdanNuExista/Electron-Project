@@ -454,8 +454,6 @@ function addScoreIfInTop10()
     });
 }
 
-
-
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('back-button').addEventListener('click', () => {
         window.location.href = '../mainPage/index.html';
